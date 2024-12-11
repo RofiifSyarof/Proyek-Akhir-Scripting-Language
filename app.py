@@ -41,15 +41,28 @@ def predict(model, image_tensor, class_names):
         return predicted_class.item(), confidence.item(), probabilities
 
 # Daftar nama kelas
-CLASS_NAMES = ['battery', 'biological', 'cardboard', 'clothes', 'glass',
-               'metal', 'paper', 'plastic', 'shoes', 'trash']
+CLASS_NAMES = ['baterai', 'organik', 'kardus', 'kain', 'kaca',
+               'metal', 'kertas', 'plastik', 'sepatu', 'lainnya']
+
+# Nama Halaman di Tab
+st.set_page_config(page_title="Klasifikasi Jenis Sampah", page_icon="♻️", layout="centered")
 
 # Title aplikasi
-st.title("Aplikasi Klasifikasi Sampah")
+st.markdown("""
+    <h2 style="text-align: center;">♻️Aplikasi Klasifikasi Jenis Sampah♻️</h2>
+""", unsafe_allow_html=True)
+
 
 # Deskripsi aplikasi
-st.write("""
-Upload gambar sampah, dan aplikasi akan memprediksi jenis sampah beserta tingkat kepercayaan.
+st.html("""
+    <h4>⚠️Bagaimana cara menggunakannya?</h4>
+    <h5>1. Upload gambar yang ingin Anda deteksi.</h5>
+    <h5>2. Tunggu situs untuk memproses gambar.</h5>
+    <h5>3. Hasil prediksi akan ditampilkan di bawah gambar.</h5>
+    <br>
+    
+    <h4>⚠️Catatan⚠️</h4>
+    <h5>1. Aplikasi saat ini hanya menerima format gambar JPG. JPEG, dan PNG dengan ukuran maksimal 200MB.</h5>
 """)
 
 # Memuat model
@@ -62,7 +75,7 @@ uploaded_file = st.file_uploader("Upload gambar sampah", type=["jpg", "jpeg", "p
 if uploaded_file is not None:
     # Membuka gambar
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="Gambar yang diupload", use_column_width=True)
+    st.image(image, caption="Gambar yang diupload", use_container_width=True)
     
     # Memproses gambar
     image_tensor = preprocess_image(image)
@@ -71,10 +84,21 @@ if uploaded_file is not None:
     predicted_class, confidence, probabilities = predict(model, image_tensor, CLASS_NAMES)
     
     # Menampilkan hasil prediksi
-    st.subheader(f"**Prediksi:** {CLASS_NAMES[predicted_class]}")
-    st.subheader(f"**Tingkat Kepercayaan:** {confidence * 100:.2f}%")
-    
-    # Menampilkan probabilitas untuk semua kelas
-    st.write("**Probabilitas untuk setiap kelas:**")
-    for idx, class_name in enumerate(CLASS_NAMES):
-        st.write(f"{class_name}: {probabilities[idx].item() * 100:.2f}%")
+    if confidence >= 0.6:
+        st.subheader(f"**Gambar yang Anda unggah kemungkinan merupakan jenis sampah** {CLASS_NAMES[predicted_class]}.")
+        st.subheader(f"**Kami memprediksinya dengan tingkat keyakinan sebesar** {confidence * 100:.2f}%")
+    else:
+        st.subheader("Gambar yang Anda unggah kemungkinan bukan gambar sampah.")
+        
+st.write('---')
+st.markdown("""
+            <h5>Dikembangkan oleh Kelompok 5, dengan anggota:
+            <br><br>
+            1.  Muhammad Rofiif Syarof Nur Aufaa (22537141014)<br>
+            2.  Wahyu Nur Cahyanto (22537141026)<br>
+            3.  Muhammad Efflin Rizqallah Limbong (22537144007)
+            <br><br>
+            Untuk memenuhi tugas akhir mata kuliah Scripting Language.
+            </h5>
+                """,
+            unsafe_allow_html=True)
