@@ -6,6 +6,7 @@ Langkah-langkah
 https://pytorch-klasifikasi-sampah.streamlit.app
 
 **CATATAN!!!**
+
 Link tidak aktif secara permanen, ada kemungkinan link akan dinonaktifkan secara otomatis oleh Streamlit apabila tidak ada aktivitas.
 
 ### Cara Kedua (Menggunakan Server Cloud Streamlit)
