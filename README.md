@@ -4,6 +4,7 @@
 Langkah-langkah
 1. Ketikkan link berikut ke browser yang Anda gunakan:
 https://pytorch-klasifikasi-sampah.streamlit.app
+
 **CATATAN!!!**
 Link tidak aktif secara permanen, ada kemungkinan link akan dinonaktifkan secara otomatis oleh Streamlit apabila tidak ada aktivitas.
 
@@ -12,6 +13,7 @@ Link tidak aktif secara permanen, ada kemungkinan link akan dinonaktifkan secara
 1. Membutuhkan akun GitHub.
 2. Perlu mengunggah program ke akun Github.
 3. Referensi video: https://www.youtube.com/watch?v=HKoOBiAaHGg
+
 Langkah-langkah
 1. Login ke akun Github.
 2. Unggah program ke repositori Github.
@@ -30,6 +32,7 @@ Langkah-langkah
 1. Perlu membuat dan menginstal environment Streamlit.
 2. Perlu menginstal library python yang dibutuhkan.
 3. Referensi cara instal Streamlit: https://docs.streamlit.io/get-started/installation
+
 Langkah-langkah
 1. Buat dan instal Streamlit.
 2. Masukkan program ke folder instalasi Streamlit.
